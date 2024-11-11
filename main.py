@@ -9,3 +9,5 @@ if __name__ == "__main__":
     chart.display_Weather()
     
     # Current display is working but we need the param conditions to be dynamic as well.
+
+# test
