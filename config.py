@@ -1,6 +1,6 @@
-from ast import Param
 import requests
-import pandas as pd
+import pandas as pd;
+import os
 
 
 class Data:
@@ -20,23 +20,38 @@ class Data:
     "temperature_unit": "fahrenheit"
 }
         
+        dp = self.getCurrentWeather()
+        if not os.path.exists('output.csv'):
+            # If the file does not exist, write the dataframe to a new CSV file
+
+            dp.to_csv('output.csv', index=False, mode='w', header=True)
+            print("output file")
+            #
+        else:
+            # If the file exists, append the dataframe to the existing file
+
+            dp.to_csv('output.csv', index=False, mode='a', header=False)
+        #
+        
     #
     url = "https://api.open-meteo.com/v1/forecast"
 
     def getCurrentWeather(self):
         # returns the dictionary for current weather
+        weather_data = []
         self.response = requests.get(self.url, params=self.params)
         data = self.response.json()
-        return pd.DataFrame(data['current'], index=[1])
+        for location in len(self.lat):
+            weather_data.append(data['current'])
+        return pd.DataFrame(weather_data, index=[1])
     #
     def display_Weather(self):
         #Prints current weather conditions for given Location
-        weather_data = self.getCurrentWeather()
-        weather_data.to_csv(path_or_buf= f"output/{self.lat},{self.long}")
-
-        
-        print(f"{weather_data}")
-         #
+        print(f"{self.getCurrentWeather()}")
+    #
+    
+    
+#
 
 
 
