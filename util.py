@@ -4,7 +4,8 @@ import time
 f = None
 
 def get_path():
-    f = open("output.csv", 'r')
+    if os.path.exists('output.csv'):
+        f = open("output.csv", 'r')
     
     
 def read_CSV():

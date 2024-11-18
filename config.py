@@ -20,7 +20,7 @@ class Data:
     "temperature_unit": "fahrenheit"
 }
         
-        dp = pd.DataFrame(self.getCurrentWeather())
+        dp = self.getCurrentWeather()
         if not os.path.exists('output.csv'):
             # If the file does not exist, write the dataframe to a new CSV file
 
@@ -38,9 +38,12 @@ class Data:
 
     def getCurrentWeather(self):
         # returns the dictionary for current weather
+        weather_data = []
         self.response = requests.get(self.url, params=self.params)
         data = self.response.json()
-        return pd.DataFrame(data['current'], index=[1])
+        for location in len(self.lat):
+            weather_data.append(data['current'])
+        return pd.DataFrame(weather_data, index=[1])
     #
     def display_Weather(self):
         #Prints current weather conditions for given Location

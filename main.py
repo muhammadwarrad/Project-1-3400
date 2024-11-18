@@ -3,9 +3,7 @@ import Accesser
 
 
 def main():
-    chart = Data(input("Enter latitude: "), input("Enter Longitude: "))
-
-    chart.display_Weather()
+    Data(input("Enter latitude: "), input("Enter Longitude: "))
     
     Accesser.load_info()
     Accesser.get_Temp()

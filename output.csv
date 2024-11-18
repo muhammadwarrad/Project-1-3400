@@ -1,3 +1,0 @@
-time,interval,temperature_2m,relative_humidity_2m,is_day,precipitation,rain,weather_code,wind_speed_10m
-2024-11-17T21:30,900,66.9,30,0,0.0,0.0,0,18.8
-2024-11-17T21:30,900,32.5,97,0,0.3,0.0,53,14.1
