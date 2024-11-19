@@ -2,11 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 import Filter, util,os
-# If you're using matplotlib for scatter plotting
 
-# Assuming 'Filter' and 'util' are modules or classes that you have access to
-# You should import them like this (if they are custom modules or classes):
-# from your_module_name import Filter, util
 info = None
 
 def load_info():
@@ -23,6 +19,12 @@ def get_Temp():
         Filter.get_Variable(info, "temperature")
     else:
         print("Error: Info has not been loaded.")
+#
+
+def show_Data():
+    load_info()
+    print(info)
+#
 
 def scatter(x, y):
     load_info()

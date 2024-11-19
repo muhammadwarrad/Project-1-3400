@@ -4,14 +4,15 @@ import Accesser
 
 def main():
     Data(input("Enter latitude: ").split(), input("Enter Longitude: ").split())
-    Accesser.get_Temp()
+    Accesser.show_Data()
+    
+    print("Would you like to Purge data? y/n")
+    if( input() == 'y'):
+        Accesser.purge()
     
 
     
-    # Current display is working but we need the param conditions to be dynamic as well.
-
-# test
-
+    
 if __name__ =="__main__":
     main()
 #
