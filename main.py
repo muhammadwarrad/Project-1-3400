@@ -3,16 +3,10 @@ import Accesser
 
 
 def main():
-    Data(input("Enter latitude: "), input("Enter Longitude: "))
-    
-    Accesser.load_info()
+    Data(input("Enter latitude: ").split(), input("Enter Longitude: ").split())
     Accesser.get_Temp()
     
-    Accesser.scatter(input("input x:"), input("input y: "))
-    
-    purge = input("would you like to purge data y/n: ")
-    if purge == 'y':
-        Accesser.purge()
+
     
     # Current display is working but we need the param conditions to be dynamic as well.
 
