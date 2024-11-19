@@ -9,7 +9,6 @@ class Data:
         self.longitudes = longitudes  # List of longitudes
         self.url = "https://api.open-meteo.com/v1/forecast"
         
-        # We will first test with a very simple query that only includes latitude and longitude.
         weather_data = self.getCurrentWeather()
         self.save_to_csv(weather_data)
 
@@ -19,8 +18,8 @@ class Data:
         for lat, lon in zip(self.latitudes, self.longitudes):
             # Manually encode the latitude and longitude to ensure proper formatting
             params = {
-                "latitude": str(lat),
-                "longitude": str(lon),
+                "latitude": lat,
+                "longitude": lon,
                 "current_weather": "true",
                 "temperature_unit": "fahrenheit"
             }
@@ -49,12 +48,18 @@ class Data:
                     current_weather['latitude'] = lat
                     current_weather['longitude'] = lon
                     weather_data.append(current_weather)
+                #
                 else:
                     print(f"No current weather data found for {lat}, {lon}")
+                #
+            #
             except requests.exceptions.RequestException as e:
                 print(f"Request failed for {lat}, {lon}: {e}")
+            #
+        #
         
         return weather_data
+    #
 
     def save_to_csv(self, weather_data):
         # Convert the weather data to a pandas DataFrame
@@ -65,10 +70,15 @@ class Data:
             if not os.path.exists('output.csv'):
                 df.to_csv('output.csv', index=False, mode='w', header=True)
                 print("Creating new output.csv")
+            #
             else:
                 df.to_csv('output.csv', index=False, mode='a', header=False)
                 print("Appending to output.csv")
+            #
+        #
         else:
             print("No weather data to save.")
+        #
+    #
 
 
