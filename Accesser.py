@@ -1,5 +1,7 @@
+
 import pandas as pd
-import util, Filter, os
+import matplotlib.pyplot as plt 
+import Filter, util,os
 
 info = None
 
@@ -10,20 +12,30 @@ def load_info():
         print("CSV loaded successfully!")
     else:
         print("Error: output.csv not found.")
-    
-    
+
 def get_Temp():
-        Filter.get_Variable(info, "temperature_2m")
-    #
- 
-def scatter(x, y):
-    Filter.scatter(info, x,y)
+    load_info()
+    if info is not None:
+        Filter.get_Variable(info, "temperature")
+    else:
+        print("Error: Info has not been loaded.")
 #
+
+def show_Data():
+    load_info()
+    print(info)
+#
+
+def scatter(x, y):
+    load_info()
+    if info is not None:
+        Filter.scatter(info, x, y)
+    else:
+        print("Error: Info has not been loaded.")
 
 def purge():
-    util.purge();
-#
+    util.purge()
+
 
 if __name__ == "__main__":
-    load_info()
-    
+    pass

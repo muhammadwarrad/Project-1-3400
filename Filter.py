@@ -1,7 +1,7 @@
 import matplotlib.pyplot as pl
 
 def get_Variable(info, var):
-    print(info.var)
+    print(info[var])
 #
 
 def scatter(info, x, y):
