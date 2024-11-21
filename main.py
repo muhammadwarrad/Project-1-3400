@@ -1,14 +1,12 @@
 from config import Data
-import Accesser
+import util,Accesser
 
 
 def main():
     Data(input("Enter latitude: ").split(), input("Enter Longitude: ").split())
-    Accesser.show_Data()
     
-    print("Would you like to Purge data? y/n")
-    if( input() == 'y'):
-        Accesser.purge()
+    #Accesser.scatter("temperature")
+    
     
 
     

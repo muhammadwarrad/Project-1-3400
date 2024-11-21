@@ -2,6 +2,13 @@ import requests
 import pandas as pd
 import os
 import urllib.parse
+import logging
+
+logging.basicConfig(filename="log.txt",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
 
 class Data:
     def __init__(self, latitudes, longitudes):
@@ -54,6 +61,7 @@ class Data:
                 #
             #
             except requests.exceptions.RequestException as e:
+                logger.error('%s raised an error', {e})
                 print(f"Request failed for {lat}, {lon}: {e}")
             #
         #
@@ -69,10 +77,12 @@ class Data:
             # Check if the output file exists and append or write accordingly
             if not os.path.exists('output.csv'):
                 df.to_csv('output.csv', index=False, mode='w', header=True)
+                logger.info("Creating new output.csv")
                 print("Creating new output.csv")
             #
             else:
                 df.to_csv('output.csv', index=False, mode='a', header=False)
+                logger.info("Appending to output.csv")
                 print("Appending to output.csv")
             #
         #

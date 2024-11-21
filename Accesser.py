@@ -1,24 +1,22 @@
 
 import pandas as pd
-import matplotlib.pyplot as plt 
-import Filter, util,os
+import  util,os
+from Parent import ParentClass
 
 info = None
+Pr = None
 
 def load_info():
-    global info
+    global Pr
     if os.path.exists('output.csv'):
-        info = pd.read_csv('output.csv')
+        Pr = ParentClass(pd.read_csv('output.csv'))
         print("CSV loaded successfully!")
     else:
         print("Error: output.csv not found.")
 
 def get_Temp():
     load_info()
-    if info is not None:
-        Filter.get_Variable(info, "temperature")
-    else:
-        print("Error: Info has not been loaded.")
+    Pr.visualize_data("temperature")
 #
 
 def show_Data():
@@ -26,16 +24,14 @@ def show_Data():
     print(info)
 #
 
-def scatter(x, y):
+def scatter(x):
     load_info()
-    if info is not None:
-        Filter.scatter(info, x, y)
-    else:
-        print("Error: Info has not been loaded.")
+    Pr.visualize_data(x)
+#
 
 def purge():
     util.purge()
 
 
 if __name__ == "__main__":
-    pass
+    load_info()

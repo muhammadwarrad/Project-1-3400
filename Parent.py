@@ -5,7 +5,7 @@ import seaborn as sns
 
 
 class ParentClass:
-    def __init__(self, data, config):
+    def __init__(self, data, config=None):
         """
         Initialize the ParentClass with data and configuration.
         
