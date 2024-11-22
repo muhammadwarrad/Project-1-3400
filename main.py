@@ -1,11 +1,12 @@
 from config import Data
-import util,Accesser
+import Accesser
 
 
 def main():
     Data(input("Enter latitude: ").split(), input("Enter Longitude: ").split())
     
-    #Accesser.scatter("temperature")
+    
+    Accesser.scatter("temperature")
     
     
 
