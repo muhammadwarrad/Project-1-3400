@@ -1,7 +1,5 @@
 
-import pandas as pd
-import  util,os
-from Parent import ParentClass
+from Parent import *
 
 info = None
 Pr = None
@@ -10,6 +8,7 @@ def load_info():
     global Pr
     if os.path.exists('output.csv'):
         Pr = ParentClass(pd.read_csv('output.csv'))
+        logger.info("CSV loaded successfully!")
         print("CSV loaded successfully!")
     else:
         print("Error: output.csv not found.")

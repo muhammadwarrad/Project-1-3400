@@ -2,22 +2,20 @@ import requests
 import pandas as pd
 import os
 import urllib.parse
-import logging
+from log_config import logger
 
-logging.basicConfig(filename="log.txt",
-                    format='%(asctime)s %(message)s',
-                    filemode='w')
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
 
 class Data:
     def __init__(self, latitudes, longitudes):
         self.latitudes = latitudes  # List of latitudes
         self.longitudes = longitudes  # List of longitudes
         self.url = "https://api.open-meteo.com/v1/forecast"
-        
-        weather_data = self.getCurrentWeather()
-        self.save_to_csv(weather_data)
+        try: 
+            weather_data = self.getCurrentWeather()
+            self.save_to_csv(weather_data)
+        except Exception as e:
+            logger.error("Data could not be retrieved", {e})
+            
 
     def getCurrentWeather(self):
         # Get weather data for all locations
@@ -58,6 +56,7 @@ class Data:
                 #
                 else:
                     print(f"No current weather data found for {lat}, {lon}")
+                    logger.warning("No current weather data found for {lat}, {lon}")
                 #
             #
             except requests.exceptions.RequestException as e:
@@ -88,6 +87,7 @@ class Data:
         #
         else:
             print("No weather data to save.")
+            logger.warning("No weather Data")
         #
     #
 

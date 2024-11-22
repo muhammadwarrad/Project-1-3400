@@ -1,9 +1,0 @@
-2024-11-21 15:03:37,240 matplotlib data path: /home/linux/anaconda3/lib/python3.12/site-packages/matplotlib/mpl-data
-2024-11-21 15:03:37,245 CONFIGDIR=/home/linux/.config/matplotlib
-2024-11-21 15:03:37,247 interactive is False
-2024-11-21 15:03:37,247 platform is linux
-2024-11-21 15:03:37,299 CACHEDIR=/home/linux/.cache/matplotlib
-2024-11-21 15:03:37,302 Using fontManager instance from /home/linux/.cache/matplotlib/fontlist-v330.json
-2024-11-21 15:03:41,546 Starting new HTTPS connection (1): api.open-meteo.com:443
-2024-11-21 15:03:42,147 https://api.open-meteo.com:443 "GET /v1/forecast?latitude=50&longitude=90&current_weather=true&temperature_unit=fahrenheit HTTP/11" 200 None
-2024-11-21 15:03:42,151 Appending to output.csv
