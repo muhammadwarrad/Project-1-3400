@@ -50,7 +50,7 @@ class DataProcessor:
 
 
 # Sample code run
-if __name__ == "__main__":
-    dp = DataProcessor("output.abc",None)
-    dp.csv_to_pickle()
-    print(dp.read_pickle())
+# if __name__ == "__main__":
+    # dp = DataProcessor("output.abc",None)
+    # dp.csv_to_pickle()
+    # print(dp.read_pickle())
