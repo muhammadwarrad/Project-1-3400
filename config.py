@@ -54,8 +54,8 @@ CSV_CONFIG = {
 
 API_CONFIG = {
     "params":{
-    "latitude":None,
-    "logitude":None,
+    "latitude": None,
+    "longitude": None,
     "current_weather": "true",
     "precipitation": "true",
     "rain": "true",
