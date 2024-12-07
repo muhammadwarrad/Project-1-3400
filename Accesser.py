@@ -1,41 +1,81 @@
 
-import pandas as pd
-import matplotlib.pyplot as plt 
-import Filter, util,os
+from Filter import *
 
-info = None
 
-def load_info():
-    global info
-    if os.path.exists('output.csv'):
-        info = pd.read_csv('output.csv')
-        print("CSV loaded successfully!")
-    else:
-        print("Error: output.csv not found.")
+class Access(ParentClass):
+    info = None
 
-def get_Temp():
-    load_info()
-    if info is not None:
-        Filter.get_Variable(info, "temperature")
-    else:
-        print("Error: Info has not been loaded.")
-#
+    def __init__(self):
+        
+        global info
+        super().__init__(self.info, CSV_CONFIG)
+        self.load_Data()
+        
+            
+    def load_Data(self):
+        if os.path.exists('Data.csv'): 
+            
+            self.info = pd.read_csv(**self.config)
+            self.data= self.info 
+            logger.info("CSV loaded successfully!")
+            
+        else:
+            logger.error("Data.csv not found.")
+        
+        
 
-def show_Data():
-    load_info()
-    print(info)
-#
+    def get_Temp(self):
+        super().visualize_data("temperature")
+    #
 
-def scatter(x, y):
-    load_info()
-    if info is not None:
-        Filter.scatter(info, x, y)
-    else:
-        print("Error: Info has not been loaded.")
+    def show_Data(self):
+        print(self.info)
+    #
 
-def purge():
-    util.purge()
+    def scatter(self, x:str, y:str):
+        plt.scatter( self.info[x], self.info[y])
+        plt.xlabel(x)
+        plt.ylabel(y)
+        plt.title(f'{x} vs {y}')
+        plt.show()
+    #
+    
+    def whisker(self, x:str):
+        plt.boxplot( self.info[x])
+        plt.xlabel(x)
+        plt.title(f'{x} ')
+        plt.show()
+    #
+    
+    def violen(self, *catigories:str):
+        
+        sns.violinplot(self.info[list(catigories)])
+        plt.show()
+    #
+    
+            
+        
+    
+    
+
+    def purge(self):
+        util.purge()
+        
+    def eval_query_equals(self, column, value):
+        #Prints false on all rows that dont equal value
+        #Prints true on all rows that equal value
+        return(eval("self.data[column] == value"))
+        
+    def bool_index_GE(self, col, num):
+        return(eval("self.info[col] > float(num)"))
+    
+    def bool_index_LE(self, col, num):
+        return(eval("self.info[col] < float(num)"))
+        
+        
+    
 
 
 if __name__ == "__main__":
-    pass
+    test = Access()
+    print(test.bool_index_GE("temperature", 20))
